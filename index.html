@@ -2,54 +2,31 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Metas generator</title>
-	<style>
-		html, body {
-			width: 100%;
-			height: 100%;
-			margin: 0;
-			padding: 0;
-			background: #fff;
-		}
-		textarea {
-			display: block;
-			width: 90%;
-			height: 30%;
-			margin: 0 auto;
-			padding: 0;
-		}
-		button {
-			display: block;
-			width: 200px;
-			padding: 10px 50px;
-			margin: 10px auto 0;
-		}
-	</style>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>exel2metas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-	<textarea id="in"></textarea>
-	<textarea id="out"></textarea>
-	<button id="go">go</button>
 
-	<script>
-	document.getElementById('go').onclick = function() {
-		console.log('go');
-		var outText = '$arMetas = array('+"\r\n";
-		var text = document.getElementById('in').value.replace(/	/g,";").trim().split("\n");
-		text.forEach(function(str) {
-			str = str.split(';');
-			// if (str[0]) {
-				outText += '	\''+str[0]+'\' => array('+"\r\n";
-				outText += '		\'title\' => \''+(str[1]?str[1]:'')+'\','+"\r\n";
-				outText += '		\'descr\' => \''+(str[2]?str[2]:'')+'\','+"\r\n";
-				outText += '		\'keywd\' => \''+(str[3]?str[3]:'')+'\','+"\r\n";
-				outText += '		\'h1\' => \''+(str[4]?str[4]:'')+'\','+"\r\n";
-				outText += '	),'+"\r\n";
-			// }
-		});
-		outText += ');';
-		document.getElementById('out').value = outText;
-	};
-	</script>
+<main class="exel2metas">
+	<div class="exel2metas__header">
+		<button id="exel2metas">Обработать</button>
+		&nbsp;
+		<button id="reset">Очистить</button>
+	</div>
+	<div class="exel2metas__panels">
+		<div class="word2html__panel">
+			<textarea id="in"></textarea>
+		</div>
+		<div class="word2html__panel">
+			<textarea id="out"></textarea>
+		</div>
+	</div>
+</main>
+
+<script src="js/site.js"></script>
+
 </body>
 </html>
